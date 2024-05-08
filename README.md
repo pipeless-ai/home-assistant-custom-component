@@ -20,7 +20,7 @@ Easiest install is via [HACS](https://hacs.xyz/):
 
 ### Advanced
 
-For manual installation for advanced users, copy `custom_components/frigate` to
+For manual installation for advanced users, copy `custom_components/pipeless` to
 your `custom_components` folder in Home Assistant.
 
 Please visit the [main Pipeless Agents documentation](https://docs-agents.pipeless.ai/) for full installation instructions of this integration.
