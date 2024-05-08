@@ -1,7 +1,26 @@
 # Pipeless Agents for Home Assistant
 
-## Installation
+This integration allows you to add computer vision in an easy way to your cameras to perform actions in real-time.
 
-### Requirements
+It integrates using webhooks with Home Assistant in order to invoke actions.
+
+## Requirements
 
 To use this integration you must have FFmpeg installed in your system.
+
+TODO: use a container instead
+
+## Installation
+
+Easiest install is via [HACS](https://hacs.xyz/):
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=blakeblackshear&repository=home-assistant-custom-component&category=integration)
+
+`HACS -> Integrations -> Explore & Add Repositories -> Pipeless Agents`
+
+### Advanced
+
+For manual installation for advanced users, copy `custom_components/frigate` to
+your `custom_components` folder in Home Assistant.
+
+Please visit the [main Pipeless Agents documentation](https://docs-agents.pipeless.ai/) for full installation instructions of this integration.
