@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@pipeless_ai"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/pipeless-ai/home-assistant-custom-component",
+  "domain": "pipeless",
+  "iot_class": "assumed_state",
+  "name": "Pipeless Agents",
+  "requirements": [],
+  "version": "1.0.0"
+}
