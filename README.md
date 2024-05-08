@@ -24,3 +24,8 @@ For manual installation for advanced users, copy `custom_components/pipeless` to
 your `custom_components` folder in Home Assistant.
 
 Please visit the [main Pipeless Agents documentation](https://docs-agents.pipeless.ai/) for full installation instructions of this integration.
+
+## Known Issues
+
+- [ ] Adding more than one camera per user fails. This is probably due to how the FFmpeg process is created. If some Home Assistant expert knows a better way of running it please let us know.
+- [ ] Sometimes adding a config entry results in a config entry duplication.

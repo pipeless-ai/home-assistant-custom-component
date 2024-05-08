@@ -58,10 +58,13 @@ def run_ffmpeg(stream_source, remote_endpoint):
         "ffmpeg",
         "-i",
         stream_source,
+        "-x264-params",
+        "crf=23:ref=0:bframes=0:keyint=60:min-keyint=60:scenecut=0",  # We need to remove Bframes in order to allow webrtc reading. Also keyint params try to minimize keyframes impact
         "-c:v",
-        "copy",
+        "libx264",  # Re-encode so that the multimedia server is able to serve most protocols. VP9 could be a better alterntive for faster transmission and removing keyframes
+        "-an",  # Disable audio forward
         "-f",
-        "mpegts",
+        "rtsp",
         remote_endpoint,
     ]
 
@@ -79,6 +82,7 @@ def run_ffmpeg(stream_source, remote_endpoint):
     # Check if FFmpeg process failed
     return_code = process.returncode
     if return_code != 0:
+        print(stderr.strip())
         _LOGGER.error("FFmpeg process failed with return code %d", return_code)
         _LOGGER.error("FFmpeg output: %s", stdout.strip())
         _LOGGER.error("FFmpeg error: %s", stderr.strip())
