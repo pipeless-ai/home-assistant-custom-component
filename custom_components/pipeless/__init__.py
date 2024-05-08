@@ -53,7 +53,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 def run_ffmpeg(stream_source, remote_endpoint):
     """Run FFmpeg process to push the stream to the remote source."""
-    print(f"Streaming from {stream_source} to {remote_endpoint}")
+    _LOGGER.info(f"Streaming from {stream_source} to {remote_endpoint}")
     ffmpeg_command = [
         "ffmpeg",
         "-i",
