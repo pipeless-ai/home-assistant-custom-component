@@ -27,7 +27,7 @@ jobs:
       - name: Install requirements
         run: |
           pip install pip
-          pip install -r requirements_dev.txt
+          pip install -r requirements.test.txt
       - name: Run pre-commit on all files
         run: |
           pre-commit run --all-files --show-diff-on-failure --color=always
