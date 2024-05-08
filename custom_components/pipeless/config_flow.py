@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import logging
 
-import voluptuous as vol
-
 from homeassistant.components.camera import DOMAIN as CAMERA_DOMAIN
 from homeassistant.config_entries import ConfigFlow
 from homeassistant.exceptions import HomeAssistantError
+import voluptuous as vol
 
 from .const import DOMAIN
 
