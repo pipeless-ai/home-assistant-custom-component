@@ -28,6 +28,7 @@ jobs:
         run: |
           pip install pip
           pip install -r requirements.test.txt
+          pip install pre-commit
       - name: Run pre-commit on all files
         run: |
           pre-commit run --all-files --show-diff-on-failure --color=always
