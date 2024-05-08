@@ -67,7 +67,7 @@ jobs:
       - name: Install requirements
         run: |
           pip install pip
-          pip install -r requirements_dev.txt
+          pip install -r requirements.test.txt
       - name: Tests suite
         run: |
           pytest -p no:sugar
