@@ -68,19 +68,20 @@ def run_ffmpeg(stream_source, remote_endpoint):
         "ffmpeg",
         "-i",
         stream_source,
-        "-x264-params",
-        "crf=23:ref=0:bframes=0:keyint=60:min-keyint=60:scenecut=0",  # We need to remove Bframes in order to allow webrtc reading. Also keyint params try to minimize keyframes impact
+      #  "-pix_fmt", "yuv420p",
+        "-c:v", "libx264", # Re-encode so that the multimedia server is able to serve most protocols
+        "-preset", "ultrafast", "-tune", "zerolatency",
+        "-b:v", "1000k",
         "-fflags",
         "nobuffer",
         "-flags",
         "low_delay",
-        "-c:v",
-        "libx264",  # Re-encode so that the multimedia server is able to serve most protocols. VP9 could be a better alterntive for faster transmission and removing keyframes
+        "-bf", "0", # Remove B-frames, required to reproduce in HLS after conversion in the server
         "-an",  # Disable audio forward
-        "-f",
-        "flv",
-        "-filter:v",
-        "fps=5",  # Decrease to 1 FPS as it is not normal to require more in home automation
+        "-f", "rtsp",
+        "-vf", "fps=5",  # Decrease to 5 FPS as it is not normal to require more in home automation
+        "-muxdelay", "0", "-muxpreload", "0",
+        "-rtsp_transport", "tcp", # We also support rtsps but due to TCP retries and encryption the delay increases over time. Vy default UDP fails when behind a NAT.
         remote_endpoint,
     ]
 
