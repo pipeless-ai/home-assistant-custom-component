@@ -40,8 +40,8 @@ class PipelessAgentsConfigFlow(ConfigFlow, domain=DOMAIN):
                     await camera_entity.stream_source()
                 )  # This contains the string URL
                 user_input["stream_source"] = stream_source
-            except ValueError:
-                errors["base"] = "unknown"
+            except Exception:
+                errors["base"] = "The camera is probably not connected"
             # Validate user input and create entry
             return self.async_create_entry(title="Pipeless Agents", data=user_input)
 
@@ -49,6 +49,8 @@ class PipelessAgentsConfigFlow(ConfigFlow, domain=DOMAIN):
         # Fetch available camera entities
         entities = await self._get_camera_entities()
         entity_options = {entity.entity_id: entity.name for entity in entities}
+        if len(entity_options) < 1:
+            errors["base"] = "No cameras found"
         CONFIG_SCHEMA = vol.Schema(
             {
                 vol.Required("pipeless_endpoint"): str,
