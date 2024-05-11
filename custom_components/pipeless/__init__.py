@@ -68,20 +68,32 @@ def run_ffmpeg(stream_source, remote_endpoint):
         "ffmpeg",
         "-i",
         stream_source,
-      #  "-pix_fmt", "yuv420p",
-        "-c:v", "libx264", # Re-encode so that the multimedia server is able to serve most protocols
-        "-preset", "ultrafast", "-tune", "zerolatency",
-        "-b:v", "1000k",
+        #  "-pix_fmt", "yuv420p",
+        "-c:v",
+        "libx264",  # Re-encode so that the multimedia server is able to serve most protocols
+        "-preset",
+        "ultrafast",
+        "-tune",
+        "zerolatency",
+        "-b:v",
+        "1000k",
         "-fflags",
         "nobuffer",
         "-flags",
         "low_delay",
-        "-bf", "0", # Remove B-frames, required to reproduce in HLS after conversion in the server
+        "-bf",
+        "0",  # Remove B-frames, required to reproduce in HLS after conversion in the server
         "-an",  # Disable audio forward
-        "-f", "rtsp",
-        "-vf", "fps=5",  # Decrease to 5 FPS as it is not normal to require more in home automation
-        "-muxdelay", "0", "-muxpreload", "0",
-        "-rtsp_transport", "tcp", # We also support rtsps but due to TCP retries and encryption the delay increases over time. Vy default UDP fails when behind a NAT.
+        "-f",
+        "rtsp",
+        "-vf",
+        "fps=5",  # Decrease to 5 FPS as it is not normal to require more in home automation
+        "-muxdelay",
+        "0",
+        "-muxpreload",
+        "0",
+        "-rtsp_transport",
+        "tcp",  # We also support rtsps but due to TCP retries and encryption the delay increases over time. Vy default UDP fails when behind a NAT.
         remote_endpoint,
     ]
 
